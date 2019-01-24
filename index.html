@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>
+    Apis
+  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Youtube Search</h1>
+    <br>
+    <form id="youtube-form">
+      <label for="youtube-input">Search for a youtube video: </label>
+      <input type="text" id="youtube-input">
+      <br>
+      <input id="find-video" type="submit" value="Youtube Search">
+    </form>
+    <div id="youtube-info"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      $("#find-video").on("click", function (event) {
+        event.preventDefault();
+
+
+        var anything = $("#youtube-input").val();
+
+        var queryURL = "https://www.googleapis.com/youtube/v3/playlists" + anything + "AIzaSyDhtxHmzlLkghif9VxJ3PacmtMHKEPYzCI";
+
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response){
+          console.log(response);
+          $("#youtube-info").text(JSON.stringify(response));
+        })
+      })
+
+
+
+
+    </script>
+  </div>
+</body>
+
+</html>
