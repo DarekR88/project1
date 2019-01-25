@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var zipChosen = false;
+        var zip;
+        var queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=95008&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        })
+            // We store all of the retrieved data inside of an object called "response"
+            .then(function (response) {
+                console.log(response);
+                console.log(response[0].Key);
+                zipKey = response[0].Key
+                var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/15day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh HTTP/1.1"
+                $.ajax({
+                    url: queryUrl,
+                    method: "GET"
+                })
+                    // We store all of the retrieved data inside of an object called "response"
+                    .then(function (zipResponse) {
+                        console.log(zipResponse);
+
+                    });
+
+            });
+
+
+
+
+    </script>
+
+</body>
+
+</html>
