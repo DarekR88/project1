@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var longitude;
+        var latitude; 
+        var zipQuery;
+        var queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=95008&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+                console.log(response);
+                longitude = response[0].GeoPosition.Longitude
+                latitude = response[0].GeoPosition.Latitude
+                zipQuery = "https://api.darksky.net/forecast/bf27774df0ef9c93dd07cd3e947c8cc6/" + latitude + "," + longitude 
+                $.ajax({
+                    url: zipQuery,
+                    method: "GET"
+                }).then(function (zipResponse) {
+                        console.log(zipResponse);
+
+                    });
+
+            });
+
+
+
+
+    </script>
+
+</body>
+
+</html>
