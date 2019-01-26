@@ -2,11 +2,11 @@ var todayDate = moment().format("YYYYMMDD00")
 
 var futureDate = moment().add(5, 'd').format("YYYYMMDD00")
 
-$("#find-video").on("click", function(event) {
-    event.preventDefault();
+$("#find-video").on("click", function (event) {
+   event.preventDefault();
 
-    var postal = $("#postal-code").val();
-   
+   var postal = $("#postal-code").val().trim();
+
 
    var oArgs = {
 
@@ -14,7 +14,7 @@ $("#find-video").on("click", function(event) {
 
       q: "music",
 
-      location: postal, 
+      location: postal,
 
       within: 25,
 
@@ -26,13 +26,29 @@ $("#find-video").on("click", function(event) {
 
    };
 
-   EVDB.API.call("/events/search", oArgs, function(oData) {
-   
-   //  console.log(oArgs);
-    for (i = 0; i < oData.events.event.length; i++){
-    console.log(oData.events.event[i].start_time);
-    }
+   EVDB.API.call("/events/search", oArgs, function (oData) {
+      console.log(oData);
+      const {
+         event
+      } = oData.events;
+
+      for (i = 0; i < event.length; i++) {
+         console.log(event[i].start_time);
+         console.log(event[i].venue_name);
+         if (event[i].performers === null) {
+            console.log("More Info at: " + event[i].url);
+         } else if (event[i].performers.performer.length > 1) {
+
+
+            for (j = 0; j < event[i].performers.performer.length; j++) {
+
+               console.log(event[i].performers.performer[j].name);
+            }
+         } else {
+            console.log(event[i].performers.performer.name);
+         }
+      }
       // Note: this relies on the custom toString() methods below
 
-    });
+   });
 });
