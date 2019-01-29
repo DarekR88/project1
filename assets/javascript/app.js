@@ -55,6 +55,7 @@ $("#zipSubmit").on("click", function (event) {
    };
 
    EVDB.API.call("/events/search", oArgs, function (oData) {
+       console.log(oData);
       const {
          event
       } = oData.events;
