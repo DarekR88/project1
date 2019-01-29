@@ -70,8 +70,7 @@ $("#zipSubmit").on("click", function (event) {
          newDiv.append(" Venue Name: " + event[i].venue_name + " ");
          if (event[i].performers === null) 
          {
-            newDiv.append("Performing: ")
-            $("<a>", {href: event[i].url, text: "More Info Here"}).appendTo(newDiv);
+            $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
          } 
          else if (event[i].performers.performer.length > 1) 
          {
@@ -80,10 +79,12 @@ $("#zipSubmit").on("click", function (event) {
             {
                newDiv.append(event[i].performers.performer[j].name + " ");
             }
+              $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
          } 
          else 
          {
             newDiv.append("Performer: " + event[i].performers.performer.name);
+              $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
          }
          $("#emptyDiv").append(newDiv);
       }
