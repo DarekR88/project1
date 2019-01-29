@@ -1,3 +1,5 @@
+
+
 var config = {
     apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
     authDomain: "postsforhotthisweekend.firebaseapp.com",
@@ -13,10 +15,6 @@ var database = firebase.database();
 
 var messageBoard = database.ref("/messages")
 
-$(document).ready(function () {
-    $("#postForm").hide();
-});
-
 var userName;
 var zipCode;
 var city;
@@ -27,14 +25,70 @@ var highTemp;
 var lowTemp;
 var zipKey;
 var queryUrl;
-$("#nameSubmit").on("click", function (event) {
-    event.preventDefault();
-    userName = $("#screenName").val().trim();
-    $("#namePick").hide();
-    $("#postForm").show();
-});
-$("#zipSubmit").on("click", function(event){
-    event.preventDefault();
+
+var todayDate = moment().format("YYYYMMDD00")
+
+var futureDate = moment().add(5, 'd').format("YYYYMMDD00")
+
+$("#zipSubmit").on("click", function (event) {
+   event.preventDefault();
+
+   var postal = $("#zipCode").val().trim();
+
+
+   var oArgs = {
+
+      app_key: "nRBrbMVzRwn54MJK",
+
+      q: "music",
+
+      location: postal,
+
+      within: 25,
+
+      "date": todayDate + "-" + futureDate,
+
+      page_size: 10,
+
+      sort_order: "popularity"
+
+   };
+
+   EVDB.API.call("/events/search", oArgs, function (oData) {
+      const {
+         event
+      } = oData.events;
+      $("#emptyDiv").empty();
+
+      
+
+      for (i = 0; i < event.length; i++) 
+      {
+         var newDiv = $("<div>");
+         newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
+         newDiv.append(" Venue Name: " + event[i].venue_name + " ");
+         if (event[i].performers === null) 
+         {
+            newDiv.append("Performing: ")
+            $("<a>", {href: event[i].url, text: "More Info Here"}).appendTo(newDiv);
+         } 
+         else if (event[i].performers.performer.length > 1) 
+         {
+            newDiv.append("Performing: ")
+            for (j = 0; j < event[i].performers.performer.length; j++) 
+            {
+               newDiv.append(event[i].performers.performer[j].name + " ");
+            }
+         } 
+         else 
+         {
+            newDiv.append("Performer: " + event[i].performers.performer.name);
+         }
+         $("#emptyDiv").append(newDiv);
+      }
+      // Note: this relies on the custom toString() methods below
+
+   });
     $("#location").empty();
     $("#forecast").empty();
     zipCode = $("#zipCode").val().trim();
@@ -68,6 +122,20 @@ $("#zipSubmit").on("click", function(event){
         
     });
 });
+
+
+
+$(document).ready(function () {
+    $("#postForm").hide();
+});
+
+$("#nameSubmit").on("click", function (event) {
+    event.preventDefault();
+    userName = $("#screenName").val().trim();
+    $("#namePick").hide();
+    $("#postForm").show();
+});
+
     
 $("#postSubmit").on("click", function (event) {
     event.preventDefault();
