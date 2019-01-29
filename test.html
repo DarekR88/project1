@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="resultsWeather"></div>
+    <script type="text/javascript">
+        var city;
+        var state;
+        var date;
+        var condition;
+        var highTemp;
+        var lowTemp;
+        var zipKey;
+        var queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=85001&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+                console.log(response);
+                console.log(response[0].Key);
+                zipKey = response[0].Key
+                state = response[0].AdministrativeArea.EnglishName
+                city = response[0].LocalizedName
+                console.log(city);
+                console.log(state);
+                var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+                $.ajax({
+                    url: zipQuery,
+                    method: "GET"
+                }).then(function (zipResponse) {
+                        console.log(zipResponse);
+                        for (var i=0; i < zipResponse.DailyForecasts.length; i++) {
+                            date = zipResponse.DailyForecasts[i].Date
+                            condition = zipResponse.DailyForecasts[i].Night.IconPhrase
+                            highTemp = zipResponse.DailyForecasts[i].Temperature.Maximum.Value
+                            lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
+                            $("#resultsWeather").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
+                        };
+                    });
+
+            });
+
+
+
+
+    </script>
+
+</body>
+
+</html>
