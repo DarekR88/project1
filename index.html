@@ -1,31 +1,68 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-  <title>
-    Apis
-  </title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Postal Search</h1>
-    <br>
-    <form id="youtube-form">
-      <label for="postal-code">Insert Postal Code: </label>
-      <input type="text" id="postal-code">
-      <br>
-      <input id="find-video" type="submit" value="Postal Search">
-    </form>
-    <div id="postal-info"></div>
-  </div>
 
-  <div id = "emptyDiv"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
-  <script src="http://api.eventful.com/js/api"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="assets/javascript/app.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="title">Hot This Weekend</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <form id="namePick">
+                    Choose a screen name!:<br>
+                    <input type="text" id="screenName">
+                    <br>
+                    <input type="submit" id="nameSubmit" value="Submit">
+                </form>
+                <form id="postForm">
+                    Post about your weekend plans!:<br>
+                    <input type="text" id="post" size="50">
+                    <br>
+                    <input type="submit" id="postSubmit" value="Submit">
+                </form>
+                <div id="messages">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div>
+                    <form>
+                        Input your zip code:<br>
+                        <input type="text" id="zipCode">
+                        <br>
+                        <input type="submit" id="zipSubmit" value="Submit">
+                    </form>
+                </div>
+                <div id="emptyDiv">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h2>Weather</h2>
+                <div id="resultsWeather">
+                    <div id="location"></div>
+                    <div id="forecast"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+    <script src="http://api.eventful.com/js/api"></script>
+    <script src="assets/javascript/app.js"></script>
+  
+
 </body>
 
 </html>
