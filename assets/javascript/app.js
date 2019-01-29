@@ -20,9 +20,9 @@ $("#find-video").on("click", function (event) {
 
       "date": todayDate + "-" + futureDate,
 
-      page_size: 20,
+      page_size: 10,
 
-      sort_order: "popularity",
+      sort_order: "popularity"
 
    };
 
@@ -31,15 +31,18 @@ $("#find-video").on("click", function (event) {
          event
       } = oData.events;
       $("#emptyDiv").empty();
+
+      
+
       for (i = 0; i < event.length; i++) 
       {
          var newDiv = $("<div>");
-         newDiv.text("Starts At: " + event[i].start_time + " ");
-         newDiv.append("Venue Name: " + event[i].venue_name + " ");
+         newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
+         newDiv.append(" Venue Name: " + event[i].venue_name + " ");
          if (event[i].performers === null) 
          {
             newDiv.append("Performing: ")
-            $("<a>", {href: event[i].url}).append("More Info Here").appendTo(newDiv);
+            $("<a>", {href: event[i].url, text: "More Info Here"}).appendTo(newDiv);
          } 
          else if (event[i].performers.performer.length > 1) 
          {
