@@ -32,66 +32,61 @@ var todayDate = moment().format("YYYYMMDD00")
 var futureDate = moment().add(5, 'd').format("YYYYMMDD00")
 
 $("#zipSubmit").on("click", function (event) {
-   event.preventDefault();
+    event.preventDefault();
 
-   var postal = $("#zipCode").val().trim();
+    var postal = $("#zipCode").val().trim();
 
 
-   var oArgs = {
+    var oArgs = {
 
-      app_key: "nRBrbMVzRwn54MJK",
+        app_key: "nRBrbMVzRwn54MJK",
 
-      q: "music",
+        q: "music",
 
-      location: postal,
+        location: postal,
 
-      within: 25,
+        within: 25,
 
-      "date": todayDate + "-" + futureDate,
+        "date": todayDate + "-" + futureDate,
 
-      page_size: 10,
+        page_size: 10,
 
-      sort_order: "popularity"
+        sort_order: "popularity"
 
-   };
+    };
 
-   EVDB.API.call("/events/search", oArgs, function (oData) {
-       console.log(oData);
-      const {
-         event
-      } = oData.events;
-      $("#emptyDiv").empty();
+    EVDB.API.call("/events/search", oArgs, function (oData) {
+        console.log(oData);
+        const {
+            event
+        } = oData.events;
+        $("#emptyDiv").empty();
 
-      
 
-      for (i = 0; i < event.length; i++) 
-      {
-         var newDiv = $("<div>");
-         newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
-         newDiv.append(" Venue Name: " + event[i].venue_name + " ");
-         if (event[i].performers === null) 
-         {
-            $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
-         } 
-         else if (event[i].performers.performer.length > 1) 
-         {
-            newDiv.append("Performing: ")
-            for (j = 0; j < event[i].performers.performer.length; j++) 
-            {
-               newDiv.append(event[i].performers.performer[j].name + " ");
+
+        for (i = 0; i < event.length; i++) {
+            var newDiv = $("<div>");
+            newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
+            newDiv.append(" Venue Name: " + event[i].venue_name + " ");
+            if (event[i].performers === null) {
+                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
             }
-              $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
-         } 
-         else 
-         {
-            newDiv.append("Performer: " + event[i].performers.performer.name);
-              $("<a>", {href: event[i].url, text: "Buy Tickets"}).appendTo(newDiv);
-         }
-         $("#emptyDiv").append(newDiv);
-      }
-      // Note: this relies on the custom toString() methods below
+            else if (event[i].performers.performer.length > 1) {
+                newDiv.append("Performing: ")
+                for (j = 0; j < event[i].performers.performer.length; j++) {
+                    newDiv.append(event[i].performers.performer[j].name + " ");
+                }
+                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
+            }
+            else {
+                newDiv.append("Performer: " + event[i].performers.performer.name);
+                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
+            }
+            $("#emptyDiv").append(newDiv);
+        }
+        // Note: this relies on the custom toString() methods below
 
-   });
+    });
     $("#location").empty();
     $("#forecast").empty();
     zipCode = $("#zipCode").val().trim();
@@ -119,101 +114,102 @@ $("#zipSubmit").on("click", function (event) {
                 condition = zipResponse.DailyForecasts[i].Night.IconPhrase
                 highTemp = zipResponse.DailyForecasts[i].Temperature.Maximum.Value
                 lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
-                switch(condition) {
+                switch (condition) {
                     case "Sunny":
-
-                    break;
+                        conditionImage = "assets/images/sun.jpg"
+                        break;
                     case "Mostly sunny":
-
-                    break;
+                        conditionImage = "assets/images/sun.jpg"
+                        break;
                     case "Partly sunny":
-
-                    break;
+                        conditionImage = "assets/images/cloudy.png"
+                        break;
                     case "Intermittent clouds":
-
-                    break;
+                        conditionImage = "assets/images/cloudy.png"
+                        break;
                     case "Hazy sunshine":
-
-                    break;
+                        conditionImage = "assets/images/cloudy.png"
+                        break;
                     case "Mostly cloudy":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Cloudy":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Fog":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Showers":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "Mostly cloudy w/ showers":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "Partly sunny w/ showers":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "T-storms":
-
-                    break;
+                        conditionImage = "assets/images/thunder.jpg"
+                        break;
                     case "Mostly cloudy w/ t-storms":
-
-                    break;
+                        conditionImage = "assets/images/thunder.jpg"
+                        break;
                     case "Partly sunny w/ t-storms":
-
-                    break;
+                        conditionImage = "assets/images/thunder.jpg"
+                        break;
                     case "Rain":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "Flurries":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Mostly cloudy w/ flurries":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Partly sunny w/ flurries":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Ice":
-
-                    break;
+                        conditionImage = "assets/images/cold.jpg"
+                        break;
                     case "Sleet":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Freezing rain":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "Rain and snow":
-
-                    break;
+                        conditionImage = "assets/images/rain.jpg"
+                        break;
                     case "Hot":
-
-                    break;
+                        conditionImage = "assets/images/sun.jpg"
+                        break;
                     case "Cold":
-
-                    break;
+                        conditionImage = "assets/images/cold.jpg"
+                        break;
                     case "Windy":
-
-                    break;
+                        conditionImage = "assets/images/windy.jpg"
+                        break;
                     case "Clear":
-
-                    break;
+                        conditionImage = "assets/images/moon.jpg"
+                        break;
                     case "Mostly clear":
-
-                    break;
+                        conditionImage = "assets/images/moon.jpg"
+                        break;
                     case "Partly cloudy":
-
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     case "Mostly cloudy w/ snow":
-                    break;
+                        conditionImage = "assets/images/clouds.jpg"
+                        break;
                     default:
-                    
+                        conditionImage = "assets/images/clouds.jpg"
                 }
 
-                $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + "></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
+                $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
             };
         });
-        
+
     });
 });
 
@@ -230,7 +226,7 @@ $("#nameSubmit").on("click", function (event) {
     $("#postForm").show();
 });
 
-    
+
 $("#postSubmit").on("click", function (event) {
     event.preventDefault();
     var message = $("#post").val().trim();
