@@ -25,6 +25,7 @@ var highTemp;
 var lowTemp;
 var zipKey;
 var queryUrl;
+var conditionImage;
 
 var todayDate = moment().format("YYYYMMDD00")
 
@@ -118,7 +119,98 @@ $("#zipSubmit").on("click", function (event) {
                 condition = zipResponse.DailyForecasts[i].Night.IconPhrase
                 highTemp = zipResponse.DailyForecasts[i].Temperature.Maximum.Value
                 lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
-                $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
+                switch(condition) {
+                    case "Sunny":
+
+                    break;
+                    case "Mostly sunny":
+
+                    break;
+                    case "Partly sunny":
+
+                    break;
+                    case "Intermittent clouds":
+
+                    break;
+                    case "Hazy sunshine":
+
+                    break;
+                    case "Mostly cloudy":
+
+                    break;
+                    case "Cloudy":
+
+                    break;
+                    case "Fog":
+
+                    break;
+                    case "Showers":
+
+                    break;
+                    case "Mostly cloudy w/ showers":
+
+                    break;
+                    case "Partly sunny w/ showers":
+
+                    break;
+                    case "T-storms":
+
+                    break;
+                    case "Mostly cloudy w/ t-storms":
+
+                    break;
+                    case "Partly sunny w/ t-storms":
+
+                    break;
+                    case "Rain":
+
+                    break;
+                    case "Flurries":
+
+                    break;
+                    case "Mostly cloudy w/ flurries":
+
+                    break;
+                    case "Partly sunny w/ flurries":
+
+                    break;
+                    case "Ice":
+
+                    break;
+                    case "Sleet":
+
+                    break;
+                    case "Freezing rain":
+
+                    break;
+                    case "Rain and snow":
+
+                    break;
+                    case "Hot":
+
+                    break;
+                    case "Cold":
+
+                    break;
+                    case "Windy":
+
+                    break;
+                    case "Clear":
+
+                    break;
+                    case "Mostly clear":
+
+                    break;
+                    case "Partly cloudy":
+
+                    break;
+                    case "Mostly cloudy w/ snow":
+                    break;
+                    default:
+                    
+                }
+
+                $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + "></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
             };
         });
         
