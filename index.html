@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 
 <head>
@@ -11,42 +10,20 @@
 
 <body>
   <div class="container">
-    <h1>Youtube Search</h1>
+    <h1>Postal Search</h1>
     <br>
     <form id="youtube-form">
-      <label for="youtube-input">Search for a youtube video: </label>
-      <input type="text" id="youtube-input">
+      <label for="postal-code">Insert Postal Code: </label>
+      <input type="text" id="postal-code">
       <br>
-      <input id="find-video" type="submit" value="Youtube Search">
+      <input id="find-video" type="submit" value="Postal Search">
     </form>
-    <div id="youtube-info"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-      $("#find-video").on("click", function (event) {
-        event.preventDefault();
-
-
-        var anything = $("#youtube-input").val();
-
-        var queryURL = "https://www.googleapis.com/youtube/v3/playlists" + anything + "AIzaSyDhtxHmzlLkghif9VxJ3PacmtMHKEPYzCI";
-
-
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(response){
-          console.log(response);
-          $("#youtube-info").text(JSON.stringify(response));
-        })
-      })
-
-
-
-
-    </script>
+    <div id="postal-info"></div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+  <script src="http://api.eventful.com/js/api"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
