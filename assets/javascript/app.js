@@ -206,7 +206,7 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/clouds2.png"
                 };
 
-                $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
+                $("#forecast").append("<div><p>Date: " + moment(date).format("LLLL") + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
             };
         });
 
