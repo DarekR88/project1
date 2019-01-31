@@ -11,8 +11,8 @@ body {
     text-align: left;
 }
 
-#messages {
-    width: 300px;
+#messages{
+    width: 375px;
     height: 700px;
     border-width: 3px;
     border-style: solid;
