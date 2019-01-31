@@ -131,13 +131,13 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/cloudy.png"
                         break;
                     case "Mostly cloudy":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Cloudy":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Fog":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Showers":
                         conditionImage = "assets/images/rain.jpg"
@@ -161,19 +161,19 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/rain.jpg"
                         break;
                     case "Flurries":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Mostly cloudy w/ flurries":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Partly sunny w/ flurries":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Ice":
                         conditionImage = "assets/images/cold.jpg"
                         break;
                     case "Sleet":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Freezing rain":
                         conditionImage = "assets/images/rain.jpg"
@@ -197,14 +197,14 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/moon.jpg"
                         break;
                     case "Partly cloudy":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     case "Mostly cloudy w/ snow":
-                        conditionImage = "assets/images/clouds.jpg"
+                        conditionImage = "assets/images/clouds2.jpg"
                         break;
                     default:
-                        conditionImage = "assets/images/clouds.jpg"
-                }
+                        conditionImage = "assets/images/clouds2.jpg"
+                };
 
                 $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
             };
@@ -222,19 +222,27 @@ $(document).ready(function () {
 $("#nameSubmit").on("click", function (event) {
     event.preventDefault();
     userName = $("#screenName").val().trim();
-    $("#namePick").hide();
-    $("#postForm").show();
+    if (userName === "") {
+        console.log("error")
+    } else {
+        $("#namePick").hide();
+        $("#postForm").show();
+    };
 });
 
 
 $("#postSubmit").on("click", function (event) {
     event.preventDefault();
     var message = $("#post").val().trim();
-    messageBoard.push({
-        "name": userName,
-        "message": message
-    });
-    $("#post").val('');
+    if (message === "") {
+        console.log("error")
+    } else {
+        messageBoard.push({
+            "name": userName,
+            "message": message
+        });
+        $("#post").val('');
+    }
 });
 
 messageBoard.on("child_added", function (snapshot) {
