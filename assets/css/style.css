@@ -1,8 +1,8 @@
-body{
+body {
     text-align: center;
 }
 
-#resultsWeather{
+#resultsWeather {
     width: 200px;
     height: 700px;
     border-width: 3px;
@@ -17,5 +17,5 @@ body{
     border-width: 3px;
     border-style: solid;
     text-align: left;
-    overflow-y: auto; 
+    overflow-y: auto;
 }

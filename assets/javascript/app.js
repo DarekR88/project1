@@ -1,12 +1,10 @@
-
-
 var config = {
-    apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
-    authDomain: "postsforhotthisweekend.firebaseapp.com",
-    databaseURL: "https://postsforhotthisweekend.firebaseio.com",
-    projectId: "postsforhotthisweekend",
-    storageBucket: "postsforhotthisweekend.appspot.com",
-    messagingSenderId: "168090664160"
+   apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
+   authDomain: "postsforhotthisweekend.firebaseapp.com",
+   databaseURL: "https://postsforhotthisweekend.firebaseio.com",
+   projectId: "postsforhotthisweekend",
+   storageBucket: "postsforhotthisweekend.appspot.com",
+   messagingSenderId: "168090664160"
 };
 
 firebase.initializeApp(config);
@@ -55,38 +53,68 @@ $("#zipSubmit").on("click", function (event) {
 
     };
 
-    EVDB.API.call("/events/search", oArgs, function (oData) {
-        console.log(oData);
-        const {
+
+   function animateCSS(element, animationName, callback) {
+      const node = document.querySelector(element)
+      
+      node.classList.add('animated', animationName)
+
+      function handleAnimationEnd() {
+         node.classList.remove('animated', animationName)
+         node.removeEventListener('animationend', handleAnimationEnd)
+
+         if (typeof callback === 'function') callback()
+      }
+
+      node.addEventListener('animationend', handleAnimationEnd)
+   }
+
+
+   if (postal === "") {
+
+      animateCSS('#zipCode', 'shake')
+   } else {
+      EVDB.API.call("/events/search", oArgs, function (oData) {
+         const {
             event
-        } = oData.events;
-        $("#emptyDiv").empty();
+         } = oData.events;
+         $("#emptyDiv").empty();
 
 
 
-        for (i = 0; i < event.length; i++) {
+         for (i = 0; i < event.length; i++) {
+
             var newDiv = $("<div>");
             newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
             newDiv.append(" Venue Name: " + event[i].venue_name + " ");
             if (event[i].performers === null) {
-                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
-            }
-            else if (event[i].performers.performer.length > 1) {
-                newDiv.append("Performing: ")
-                for (j = 0; j < event[i].performers.performer.length; j++) {
-                    newDiv.append(event[i].performers.performer[j].name + " ");
-                }
-                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
-            }
-            else {
-                newDiv.append("Performer: " + event[i].performers.performer.name);
-                $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
-            }
-            $("#emptyDiv").append(newDiv);
-        }
-        // Note: this relies on the custom toString() methods below
 
-    });
+               $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
+            } else if (event[i].performers.performer.length > 1) {
+               newDiv.append("Performing: ")
+               for (j = 0; j < event[i].performers.performer.length; j++) {
+                  newDiv.append(event[i].performers.performer[j].name + " ");
+               }
+               $("<a>", {
+                  href: event[i].url,
+                  text: "Buy Tickets"
+               }).appendTo(newDiv);
+            } else {
+               newDiv.append("Performer: " + event[i].performers.performer.name);
+               $("<a>", {
+                  href: event[i].url,
+                  text: " Buy Tickets"
+               }).appendTo(newDiv);
+            }
+            newDiv.append("<br><br>");
+            $("#emptyDiv").append(newDiv);
+         }
+
+         // Note: this relies on the custom toString() methods below
+
+      });
+   }
+
     $("#location").empty();
     $("#forecast").empty();
     zipCode = $("#zipCode").val().trim();
@@ -211,15 +239,17 @@ $("#zipSubmit").on("click", function (event) {
         });
 
     });
+
 });
 
 
 
 $(document).ready(function () {
-    $("#postForm").hide();
+   $("#postForm").hide();
 });
 
 $("#nameSubmit").on("click", function (event) {
+
     event.preventDefault();
     userName = $("#screenName").val().trim();
     if (userName === "") {
@@ -228,10 +258,12 @@ $("#nameSubmit").on("click", function (event) {
         $("#namePick").hide();
         $("#postForm").show();
     };
+
 });
 
 
 $("#postSubmit").on("click", function (event) {
+
     event.preventDefault();
     var message = $("#post").val().trim();
     if (message === "") {
@@ -243,12 +275,13 @@ $("#postSubmit").on("click", function (event) {
         });
         $("#post").val('');
     }
+
 });
 
 messageBoard.on("child_added", function (snapshot) {
-    var name = snapshot.val().name
-    var message = snapshot.val().message
-    $("#messages").prepend(name + ": " + message + "<br>")
+   var name = snapshot.val().name
+   var message = snapshot.val().message
+   $("#messages").prepend(name + ": " + message + "<br>")
 }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
+   console.log("The read failed: " + errorObject.code);
 });
