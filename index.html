@@ -7,24 +7,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Monoton|Ultra|Vidaloka" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <link rel="stylesheet" href="animate.min.css">
 </head>
 
-<body>
-
-    <div class="container">
+<body style="background-image: url(assets/images/background.jpeg)" class="bg-image"></body>
+<div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1 id="title">Hot This Weekend</h1>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-3">
                 <form id="namePick">
-                    Choose a screen name!:<br>
+                    Choose a screen name and chat!<br>
                     <input type="text" id="screenName">
+                    <br>
                     <br>
                     <input type="submit" id="nameSubmit" value="Submit">
                 </form>
@@ -32,16 +35,18 @@
                     Post about your weekend plans!:<br>
                     <input type="text" id="post" size="50">
                     <br>
+                    <br>
                     <input type="submit" id="postSubmit" value="Submit">
                 </form>
                 <div id="messages">
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7" id="middle">
                 <div>
-                    <form>
+                    <form id="input-zip">
                         Input your zip code:<br>
                         <input type="text" id="zipCode">
+                        <br>
                         <br>
                         <input type="submit" id="zipSubmit" value="Submit">
                     </form>
@@ -50,7 +55,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <h2>Weather</h2>
+                <h2 id="weather-header">Here's the forecast!</h2>
                 <div id="resultsWeather">
                     <div id="location"></div>
                     <div id="forecast"></div>

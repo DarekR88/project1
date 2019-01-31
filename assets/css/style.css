@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    /* background: url(../images/background.jpeg); */
 }
 
 #resultsWeather{
@@ -9,13 +10,55 @@ body{
     border-style: solid;
     overflow: Auto;
     text-align: left;
+    color: white;
+    font-family: 'Vidaloka', serif;
+}
+
+#title {
+    font-family: 'Monoton', cursive;
+    color: blue;
+}
+#postForm {
+    font-family: 'Ultra', cursive;
+    color: aqua;
+}
+
+#namePick {
+    font-family: 'Ultra', cursive;
+    color: aqua;
+}
+
+#weather-header {
+    font-family: 'Ultra', cursive;
+    color: aqua;
+}
+
+#input-zip {
+    font-family: 'Ultra', cursive;
+    color: aqua;
 }
 
 #messages{
-    width: 300px;
+    width: 275px;
     height: 700px;
     border-width: 3px;
     border-style: solid;
     text-align: left;
     overflow-y: auto; 
+    color: white;
+    font-family: 'Vidaloka', serif;
+}
+
+
+
+#emptyDiv{
+    color:yellowgreen;
+    font-family: 'Vidaloka', serif;
+
+}
+
+.bg-image{
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
