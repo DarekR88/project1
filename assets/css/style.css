@@ -1,0 +1,21 @@
+body{
+    text-align: center;
+}
+
+#resultsWeather{
+    width: 200px;
+    height: 700px;
+    border-width: 3px;
+    border-style: solid;
+    overflow: Auto;
+    text-align: left;
+}
+
+#messages{
+    width: 375px;
+    height: 700px;
+    border-width: 3px;
+    border-style: solid;
+    text-align: left;
+    overflow-y: auto; 
+}
