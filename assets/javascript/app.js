@@ -131,13 +131,13 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/cloudy.png"
                         break;
                     case "Mostly cloudy":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Cloudy":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Fog":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Showers":
                         conditionImage = "assets/images/rain.jpg"
@@ -161,19 +161,19 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/rain.jpg"
                         break;
                     case "Flurries":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Mostly cloudy w/ flurries":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Partly sunny w/ flurries":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Ice":
                         conditionImage = "assets/images/cold.jpg"
                         break;
                     case "Sleet":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Freezing rain":
                         conditionImage = "assets/images/rain.jpg"
@@ -197,13 +197,13 @@ $("#zipSubmit").on("click", function (event) {
                         conditionImage = "assets/images/moon.jpg"
                         break;
                     case "Partly cloudy":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     case "Mostly cloudy w/ snow":
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                         break;
                     default:
-                        conditionImage = "assets/images/clouds2.jpg"
+                        conditionImage = "assets/images/clouds2.png"
                 };
 
                 $("#forecast").append("<div><p>Date: " + date + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
