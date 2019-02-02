@@ -1,72 +1,100 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Monoton|Ultra|Vidaloka" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-    <link rel="stylesheet" href="animate.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/css/style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
-<body style="background-image: url(assets/images/background.jpeg)" class="bg-image"></body>
-<div class="container">
+<body>
+  <div class="image-1">
+    <div class="random-text">
+      <span class="border">
+        HDTV
+      </span>
+      <div class="container animated">
+        <h1 class="text-center title">HOT THIS WEEKEND</h1>
         <div class="row">
-            <div class="col-md-12">
-                <h1 id="title">Hot This Weekend</h1>
+          <form id="input-zip">
+            <div class="input-group mb-3">
+              <input type="text" id="zipCode" class="form-control" placeholder="Zip Code" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary zipSubmit" type="button" id="button-addon2">Enter</button>
+                <!-- make sure to change zipSubmit button to a class -->
+
+              </div>
             </div>
+          </form>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                <form id="namePick">
-                    Choose a screen name and chat!<br>
-                    <input type="text" id="screenName">
-                    <br>
-                    <br>
-                    <input type="submit" id="nameSubmit" value="Submit">
-                </form>
-                <form id="postForm">
-                    Post about your weekend plans!:<br>
-                    <input type="text" id="post" size="50">
-                    <br>
-                    <br>
-                    <input type="submit" id="postSubmit" value="Submit">
-                </form>
-                <div id="messages">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    <form id="input-zip">
-                        Input your zip code:<br>
-                        <input type="text" id="zipCode">
-                        <br>
-                        <br>
-                        <input type="submit" id="zipSubmit" value="Submit">
-                    </form>
-                </div>
-                <div id="emptyDiv">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <h2 id="weather-header">Here's the forecast!</h2>
-                <div id="resultsWeather">
-                    <div id="location"></div>
-                    <div id="forecast"></div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
-    <script src="https://api.eventful.com/js/api"></script>
-    <script src="assets/javascript/app.js"></script>
-  
+  </div>
+
+
+  <section class="one">
+    <!-- concert dates -->
+    <div class="animated text-center" id="emptyDiv"></div>
+    <br>
+    <div class="scrollDown text-center"></div>
+  </section>
+
+<div class="weatherDiv">
+
+  <div class="image-2">
+    <div class="random-text">
+      <span class="border"></span>
+    </div>
+  </div>
+  <section class="two">
+    <div id="resultsWeather animated">
+      <div id="location"></div>
+      <div class="row animated" id="forecast-row">
+        <div id="forecast"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <div class="image-3">
+    <div class="random-text">
+      <span class="border"></span>
+    </div>
+  </div>
+
+  <section class="three">
+          <form id="namePick">
+              Choose a screen name and chat!<br>
+              <input type="text" id="screenName" size="35">
+              <br>
+              <input type="submit" id="nameSubmit" value="Submit">
+          </form>
+          <form id="postForm">
+              Post about your weekend plans!:<br>
+              <input type="text" id="post" size="35">
+              <br>
+              <input type="submit" id="postSubmit" value="Submit">
+          </form>
+          <br>
+          <div id="messages">
+          </div>
+  </section>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+  <script src="https://api.eventful.com/js/api"></script>
+  <script src="/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/javascript/app.js"></script>
 
 </body>
 

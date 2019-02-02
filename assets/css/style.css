@@ -1,64 +1,130 @@
-body{
-    text-align: center;
-    /* background: url(../images/background.jpeg); */
-}
-
-#resultsWeather{
-    width: 200px;
-    height: 700px;
-    border-width: 3px;
-    border-style: solid;
-    overflow: Auto;
-    text-align: left;
-    color: white;
-    font-family: 'Vidaloka', serif;
-}
-
-#title {
-    font-family: 'Monoton', cursive;
-    color: blue;
-}
-#postForm {
-    font-family: 'Ultra', cursive;
-    color: aqua;
-}
-
-#namePick {
-    font-family: 'Ultra', cursive;
-    color: aqua;
-}
-
-#weather-header {
-    font-family: 'Ultra', cursive;
-    color: aqua;
-}
-
-#input-zip {
-    font-family: 'Ultra', cursive;
-    color: aqua;
-}
-
-#messages{
-    width: 375px;
-    height: 700px;
-    border-width: 3px;
-    border-style: solid;
-    text-align: left;
-    overflow-y: auto; 
-    color: white;
-    font-family: 'Vidaloka', serif;
-}
-
-
-
-#emptyDiv{
-    color:yellowgreen;
-    font-family: 'Vidaloka', serif;
-
-}
-
-.bg-image{
-  background-repeat: no-repeat;
-  background-size: cover;
+#input-zip{
+    margin: auto;
   
-}
+  }
+  
+  body, html{
+    /* background-image: url(/Users/SahraanMohammed/Desktop/Practice/hanny-naibaho-388579-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    font-family:'Bowlby One SC', 'cursive';
+    font-weight: 500;
+    line-height: 1.5em;
+    color: grey;
+  }
+  
+  .one {
+  height: 100vh;
+  background-color: silver;
+  }
+  
+  .two {
+  /* height: 50vh;  */
+  background-color: transparent;
+  }
+  
+  .three {
+  /* height: 100vh; */
+  padding: 10px;
+  background-color: silver; 
+  text-align: center;
+  overflow: auto;
+  
+  }
+  
+  .image-1{
+    background-image:url('/Users/SahraanMohammed/Desktop/project1/hanny-naibaho-388579-unsplash.png');
+    min-height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-2{
+    background-image:url('/Users/SahraanMohammed/Desktop/project1/francesco-ungaro-1180051-unsplash.png');
+    min-height: 370px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-3{
+    background-image:url('/Users/SahraanMohammed/Desktop/project1/rawpixel-778690-unsplash.png');
+    min-height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-1, .image-2, .image-3{
+    position: relative;
+    background-attachment: fixed;
+  }
+  
+  #location{
+    color: black;
+    text-align: center;
+  }
+  
+  .title{
+  font-family: 'Bowlby One SC', 'cursive';
+  color: silver;
+  }
+  
+  #emptyDiv{
+    color: black;
+  }
+  
+  .card-default {
+    width: 20%;
+    text-align: center;
+    padding-bottom: 2px;
+  }
+  
+  h5{
+    color: darkblue;
+  }
+  
+  #messages{
+    border: solid;
+    border-radius: 1rem;
+    color: darkblue;
+    background: white;
+    color: black;
+    height: 100px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+  }
+  
+  .weatherDiv {
+    background-color: black;
+  }
+  
+  .card-default {
+    background-color: black;
+  }
+  
+  .zipWeather {
+    color: blue;
+  }
+  
+  .citystate{
+    padding: 10px;
+    color: silver;
+    font-size: 18pt;
+  }
+  
+  .citystate2{
+    color: silver;
+    font-size: 18pt;
+  }
+  
+  .border {
+    font-size: 18pt;
+    color: white;
+    margin-top: 2px;
+  }
+  
+  #namePick, #postForm {
+    color: black;
+  }
