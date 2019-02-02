@@ -109,7 +109,7 @@ $(".zipSubmit").on("click", function (event) {
         $(".scrollDown").empty();
 
         zipCode = $("#zipCode").val().trim();
-        queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=tVMQYSzC28wxTVhQuMmwqBn5Ukei5K1E"
         $.ajax({
             url: queryUrl,
             method: "GET"
@@ -122,7 +122,7 @@ $(".zipSubmit").on("click", function (event) {
             $("#location").append("<div class='citystate'><p>City: " + city + "</p></div><div class='citystate2'><p>State: " + state + "</p></div>")
             console.log(city);
             console.log(state);
-            var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+            var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=tVMQYSzC28wxTVhQuMmwqBn5Ukei5K1E"
             $.ajax({
                 url: zipQuery,
                 method: "GET"
