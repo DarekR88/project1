@@ -109,7 +109,7 @@ $(".zipSubmit").on("click", function (event) {
         $(".scrollDown").empty();
 
         zipCode = $("#zipCode").val().trim();
-        queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + postal + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
         $.ajax({
             url: queryUrl,
             method: "GET"
