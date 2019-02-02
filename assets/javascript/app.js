@@ -1,3 +1,6 @@
+var weatherTemplate = '<div style="display: inline-block; overflow-x: auto; text-align: center; background-color: aliceblue;"><div><p style="margin: 2px;"><b>$DayOfWeek$</b></p></div><div><img height="75" width="75" src="$Image$"></div><div><p style="margin: 2px;">$Forecast$</p></div><div><p style="margin: 2px;">$Low$F / $High$F</p></div></div>';
+
+
 var config = {
    apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
    authDomain: "postsforhotthisweekend.firebaseapp.com",
@@ -82,33 +85,28 @@ $("#zipSubmit").on("click", function (event) {
 
 
 
+         var eventTemplate = '<div class="card text-left" style="margin-top: 15px;"><div class="card-heading bg-primary" style="padding: 5px;">$Start$</div><div class="card-body"><b>Venue:</b> $Venue$<br/><b>Performing:</b> $Performing$<br/><button class="btn-primary buy-button" style="padding: 10px; margin-top: 10px;" data-href="$ButtonLink$">Buy Tickets Now</button></div></div>';
          for (i = 0; i < event.length; i++) {
-
-            var newDiv = $("<div>");
-            newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
-            newDiv.append(" Venue Name: " + event[i].venue_name + " ");
-            if (event[i].performers === null) {
-
-               $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
-            } else if (event[i].performers.performer.length > 1) {
-               newDiv.append("Performing: ")
-               for (j = 0; j < event[i].performers.performer.length; j++) {
-                  newDiv.append(event[i].performers.performer[j].name + " ");
-               }
-               $("<a>", {
-                  href: event[i].url,
-                  text: "Buy Tickets"
-               }).appendTo(newDiv);
-            } else {
-               newDiv.append("Performer: " + event[i].performers.performer.name);
-               $("<a>", {
-                  href: event[i].url,
-                  text: " Buy Tickets"
-               }).appendTo(newDiv);
-            }
-            newDiv.append("<br><br>");
-            $("#emptyDiv").append(newDiv);
+            
+           var performing = "";
+           if(event[i].performers)
+             {
+        for (j = 0; j < event[i].performers.performer.length; j++) {
+                 performing += event[i].performers.performer[j].name + ",";
+           }
+             }
+           
+           
+           var eventHTML = eventTemplate.replace('$Start$', moment(event[i].start_time).format("LLLL"))
+                                        .replace('$Venue$', event[i].venue_name)
+                                        .replace('$Performing$', performing)
+                                        .replace('$ButtonLink$', event[i].url);
+           
+           $("#emptyDiv").append(eventHTML);
          }
+         $("#emptyDiv").find('.buy-button').on('click', function() {
+            window.open($(this).attr('data-href'));
+          })
 
          // Note: this relies on the custom toString() methods below
 
@@ -118,7 +116,7 @@ $("#zipSubmit").on("click", function (event) {
     $("#location").empty();
     $("#forecast").empty();
     zipCode = $("#zipCode").val().trim();
-    queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+    queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=oVONGqGATVzjTaufWGgfKCwcCmG6oWBh"
     $.ajax({
         url: queryUrl,
         method: "GET"
@@ -128,10 +126,10 @@ $("#zipSubmit").on("click", function (event) {
         zipKey = response[0].Key
         state = response[0].AdministrativeArea.EnglishName
         city = response[0].LocalizedName
-        $("#location").append("<div><p>City: " + city + "</p></div><div><p>State: " + state + "</p></div>")
+        $("#location").append("<div><p style='margin-bottom: 0px;'>City: " + <b>city</b> + "</p></div><div><p style='margin-top: 2px;'>State: " + <b>state</b> + "</p></div>")
         console.log(city);
         console.log(state);
-        var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=oVONGqGATVzjTaufWGgfKCwcCmG6oWBh"
         $.ajax({
             url: zipQuery,
             method: "GET"
@@ -233,9 +231,18 @@ $("#zipSubmit").on("click", function (event) {
                     default:
                         conditionImage = "assets/images/clouds2.png"
                 };
-
-                $("#forecast").append("<div><p>Date: " + moment(date).format("LLLL") + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
+                var dayOfWeek = GetDayOfWeek(new Date(Date.parse(date)));
+                var weatherHTML = weatherTemplate.replace('$DayOfWeek$', dayOfWeek)
+                                                 .replace('$Forecast$', condition)
+                                                 .replace('$Low$', lowTemp)
+                                                 .replace('$High$', highTemp)
+                                                .replace('$Image$', conditionImage);
+                console.log(weatherHTML);
+                $("#forecast").append(weatherHTML);
+               // $("#forecast").append("<div style='display: inline-block; overflow-x: auto;'><div><p>Date: " + moment(date).format("LLLL") + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div></div>")
             };
+            $("#weatherTitle").show;
+            $("#eventTitle").show;
         });
 
     });
@@ -281,7 +288,19 @@ $("#postSubmit").on("click", function (event) {
 messageBoard.on("child_added", function (snapshot) {
    var name = snapshot.val().name
    var message = snapshot.val().message
-   $("#messages").prepend(name + ": " + message + "<br>")
+   var messageTemplate = "<div class='card' style='margin: 10px;'><div class='card-heading bg-primary' style='padding: 2px; padding-left: 5px;'><b>$Name$</b> <i>says..</i></div><div class='card-body' style='padding: 2px; padding-left: 10px;'>$Message$</div></div>";
+   $("#messages").prepend(messageTemplate.replace('$Name$', name).replace('$Message$', message));
 }, function (errorObject) {
    console.log("The read failed: " + errorObject.code);
 });
+
+
+
+
+function GetDayOfWeek(date)
+{
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  return days[date.getDay()];
+}
+
+

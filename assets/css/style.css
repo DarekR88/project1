@@ -1,21 +1,54 @@
 body {
     text-align: center;
+  color: black;
+  padding-top: 20px;
+  
+}
+
+.background {
+  background-image: url('https://78.media.tumblr.com/fca8ba49e176ef2e6074f085ec7ee4b8/tumblr_inline_ov7lrwzlLx1qcr65f_500.gif');
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
 }
 
 #resultsWeather {
-    width: 200px;
-    height: 700px;
-    border-width: 3px;
-    border-style: solid;
+    width: 400px;
+    height: 250px;
     overflow: Auto;
     text-align: left;
+    margin:auto;
 }
 
 #messages{
     width: 375px;
     height: 700px;
-    border-width: 3px;
-    border-style: solid;
     text-align: left;
     overflow-y: auto;
+}
+
+
+
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+.bg-primary {
+  background-color: aliceblue !important;
+}
+ 
+
+::-webkit-scrollbar-thumb {
+  background: aliceblue;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
 }

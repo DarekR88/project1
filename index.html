@@ -7,18 +7,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+
 </head>
 
 <body>
-
+    <div class='background'></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 id="title">Hot This Weekend</h1>
+                <h1 id="title"><b>Hot This Weekend</b></h1>
             </div>
         </div>
         <div class="row">
@@ -26,37 +27,36 @@
             <div class="col-md-4">
 
                 <form id="namePick">
-                    Choose a screen name!:<br>
+                    <h3><b>Choose a screen name!:</b></h3><br>
                     <input type="text" id="screenName">
-                    <br>
+
                     <input type="submit" id="nameSubmit" value="Submit">
                 </form>
                 <form id="postForm">
-                    Post about your weekend plans!:<br>
+                    <h3><b>Post about your weekend plans!:</b></h3><br>
                     <input type="text" id="post" size="50">
-                    <br>
+
                     <input type="submit" id="postSubmit" value="Submit">
                 </form>
                 <div id="messages">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div>
                     <form>
-                        Input your zip code:<br>
+                        <h3><b>Input your zip code:</b></h3><br>
                         <input type="text" id="zipCode">
-                        <br>
+
                         <input type="submit" id="zipSubmit" value="Submit">
                     </form>
                 </div>
-                <div id="emptyDiv">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <h2>Weather</h2>
+                <h2 id="weatherTitle" style="display: none;">Weather</h2>
                 <div id="resultsWeather">
                     <div id="location"></div>
                     <div id="forecast"></div>
+                </div>
+                <h2 id="eventsTitle" style="display: none;">Events</h2>
+                <div id="emptyDiv">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
     <script src="https://api.eventful.com/js/api"></script>
     <script src="assets/javascript/app.js"></script>
-  
+
 
 </body>
 
