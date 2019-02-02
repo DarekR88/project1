@@ -1,10 +1,10 @@
 var config = {
-   apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
-   authDomain: "postsforhotthisweekend.firebaseapp.com",
-   databaseURL: "https://postsforhotthisweekend.firebaseio.com",
-   projectId: "postsforhotthisweekend",
-   storageBucket: "postsforhotthisweekend.appspot.com",
-   messagingSenderId: "168090664160"
+    apiKey: "AIzaSyBs-LMND4VzFjF0kL_udcvJlIm7jFvuoMw",
+    authDomain: "postsforhotthisweekend.firebaseapp.com",
+    databaseURL: "https://postsforhotthisweekend.firebaseio.com",
+    projectId: "postsforhotthisweekend",
+    storageBucket: "postsforhotthisweekend.appspot.com",
+    messagingSenderId: "168090664160"
 };
 
 firebase.initializeApp(config);
@@ -29,8 +29,14 @@ var todayDate = moment().format("YYYYMMDD00")
 
 var futureDate = moment().add(5, 'd').format("YYYYMMDD00")
 
-$("#zipSubmit").on("click", function (event) {
+$(".zipSubmit").on("click", function (event) {
     event.preventDefault();
+
+    $(".container").addClass("zoomOutUp");
+
+    $('html, body').animate({
+        scrollTop: $(".one").offset().top
+    }, 2000);
 
     var postal = $("#zipCode").val().trim();
 
@@ -47,209 +53,196 @@ $("#zipSubmit").on("click", function (event) {
 
         "date": todayDate + "-" + futureDate,
 
-        page_size: 10,
+        page_size: 9,
 
         sort_order: "popularity"
 
     };
 
-
-   function animateCSS(element, animationName, callback) {
-      const node = document.querySelector(element)
-      
-      node.classList.add('animated', animationName)
-
-      function handleAnimationEnd() {
-         node.classList.remove('animated', animationName)
-         node.removeEventListener('animationend', handleAnimationEnd)
-
-         if (typeof callback === 'function') callback()
-      }
-
-      node.addEventListener('animationend', handleAnimationEnd)
-   }
-
-
-   if (postal === "") {
-
-      animateCSS('#zipCode', 'shake')
-   } else {
-      EVDB.API.call("/events/search", oArgs, function (oData) {
-         const {
+    EVDB.API.call("/events/search", oArgs, function (oData) {
+        console.log(oData);
+        const {
             event
-         } = oData.events;
-         $("#emptyDiv").empty();
+        } = oData.events;
+        $("#emptyDiv").empty();
 
 
 
-         for (i = 0; i < event.length; i++) {
-
+        for (i = 0; i < event.length; i++) {
             var newDiv = $("<div>");
-            newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
-            newDiv.append(" Venue Name: " + event[i].venue_name + " ");
+            newDiv.text("Starts On: " + moment(event[i].start_time).format("LLLL"));
+            newDiv.append("<br>Venue Name: " + event[i].venue_name + " ");
             if (event[i].performers === null) {
-
-               $("<a>", { href: event[i].url, text: "Buy Tickets" }).appendTo(newDiv);
-            } else if (event[i].performers.performer.length > 1) {
-               newDiv.append("Performing: ")
-               for (j = 0; j < event[i].performers.performer.length; j++) {
-                  newDiv.append(event[i].performers.performer[j].name + " ");
-               }
-               $("<a>", {
-                  href: event[i].url,
-                  text: "Buy Tickets"
-               }).appendTo(newDiv);
-            } else {
-               newDiv.append("Performer: " + event[i].performers.performer.name);
-               $("<a>", {
-                  href: event[i].url,
-                  text: " Buy Tickets"
-               }).appendTo(newDiv);
+                $("<a>", { href: event[i].url, text: " Buy Tickets Here" }).appendTo(newDiv);
             }
-            newDiv.append("<br><br>");
+            else if (event[i].performers.performer.length > 1) {
+                newDiv.append("<br>Performing: ")
+                for (j = 0; j < event[i].performers.performer.length; j++) {
+                    newDiv.append(event[i].performers.performer[j].name + " ");
+                }
+                $("<a>", { href: event[i].url, text: " Buy Tickets Here" }).appendTo(newDiv);
+            }
+            else {
+                newDiv.append("<br>Performer: " + event[i].performers.performer.name);
+                $("<a>", { href: event[i].url, text: " Buy Tickets Here" }).appendTo(newDiv);
+            }
             $("#emptyDiv").append(newDiv);
-         }
+        }
 
-         // Note: this relies on the custom toString() methods below
-
-      });
-   }
-
-    $("#location").empty();
-    $("#forecast").empty();
-    zipCode = $("#zipCode").val().trim();
-    queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
-    $.ajax({
-        url: queryUrl,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        console.log(response[0].Key);
-        zipKey = response[0].Key
-        state = response[0].AdministrativeArea.EnglishName
-        city = response[0].LocalizedName
-        $("#location").append("<div><p>City: " + city + "</p></div><div><p>State: " + state + "</p></div>")
-        console.log(city);
-        console.log(state);
-        var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
-        $.ajax({
-            url: zipQuery,
-            method: "GET"
-        }).then(function (zipResponse) {
-            console.log(zipResponse);
-            for (var i = 0; i < zipResponse.DailyForecasts.length; i++) {
-                date = zipResponse.DailyForecasts[i].Date
-                condition = zipResponse.DailyForecasts[i].Night.IconPhrase
-                highTemp = zipResponse.DailyForecasts[i].Temperature.Maximum.Value
-                lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
-                switch (condition) {
-                    case "Sunny":
-                        conditionImage = "assets/images/sun.jpg"
-                        break;
-                    case "Mostly sunny":
-                        conditionImage = "assets/images/sun.jpg"
-                        break;
-                    case "Partly sunny":
-                        conditionImage = "assets/images/cloudy.png"
-                        break;
-                    case "Intermittent clouds":
-                        conditionImage = "assets/images/cloudy.png"
-                        break;
-                    case "Hazy sunshine":
-                        conditionImage = "assets/images/cloudy.png"
-                        break;
-                    case "Mostly cloudy":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Cloudy":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Fog":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Showers":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "Mostly cloudy w/ showers":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "Partly sunny w/ showers":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "T-storms":
-                        conditionImage = "assets/images/thunder.jpg"
-                        break;
-                    case "Mostly cloudy w/ t-storms":
-                        conditionImage = "assets/images/thunder.jpg"
-                        break;
-                    case "Partly sunny w/ t-storms":
-                        conditionImage = "assets/images/thunder.jpg"
-                        break;
-                    case "Rain":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "Flurries":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Mostly cloudy w/ flurries":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Partly sunny w/ flurries":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Ice":
-                        conditionImage = "assets/images/cold.jpg"
-                        break;
-                    case "Sleet":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Freezing rain":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "Rain and snow":
-                        conditionImage = "assets/images/rain.jpg"
-                        break;
-                    case "Hot":
-                        conditionImage = "assets/images/sun.jpg"
-                        break;
-                    case "Cold":
-                        conditionImage = "assets/images/cold.jpg"
-                        break;
-                    case "Windy":
-                        conditionImage = "assets/images/windy.jpg"
-                        break;
-                    case "Clear":
-                        conditionImage = "assets/images/moon.jpg"
-                        break;
-                    case "Mostly clear":
-                        conditionImage = "assets/images/moon.jpg"
-                        break;
-                    case "Partly cloudy":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    case "Mostly cloudy w/ snow":
-                        conditionImage = "assets/images/clouds2.png"
-                        break;
-                    default:
-                        conditionImage = "assets/images/clouds2.png"
-                };
-
-                $("#forecast").append("<div><p>Date: " + moment(date).format("LLLL") + "</p></div><div><p>Condition: " + condition + "</p></div><div><img src=" + conditionImage + " height='175' width='175'></div><div><p>High Temperature: " + highTemp + " F</p></div><div><p>Low Temperature: " + lowTemp + " F</p></div>")
-            };
-        });
+        var scrollButton =  $("<button class='btn btn-outline-secondary zipWeather' type='button' id='button-addon2'>Want to stay away from weather trouble? Click here to check it out!</button>");
+        
+        $(".scrollDown").append(scrollButton);
+        // Note: this relies on the custom toString() methods below
 
     });
-
+    
 });
 
+    $(".scrollDown").on("click",function(event){
+        event.preventDefault();
 
+        $("#forecast-row").addClass("lightSpeedIn delay-2s");
+        $('html, body').animate({
+            scrollTop: $(".weatherDiv").offset().top
+        }, 2000);
+
+        $("#location").empty();
+        $("#forecast").empty();
+
+        zipCode = $("#zipCode").val().trim();
+        queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            console.log(response[0].Key);
+            zipKey = response[0].Key
+            state = response[0].AdministrativeArea.EnglishName
+            city = response[0].LocalizedName
+            $("#location").append("<div class='citystate'><p>City: " + city + "</p></div><div class='citystate2'><p>State: " + state + "</p></div>")
+            console.log(city);
+            console.log(state);
+            var zipQuery = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + zipKey + "?apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
+            $.ajax({
+                url: zipQuery,
+                method: "GET"
+            }).then(function (zipResponse) {
+                console.log(zipResponse);
+                for (var i = 0; i < zipResponse.DailyForecasts.length; i++) {
+                    date = zipResponse.DailyForecasts[i].Date
+                    condition = zipResponse.DailyForecasts[i].Night.IconPhrase
+                    highTemp = zipResponse.DailyForecasts[i].Temperature.Maximum.Value
+                    lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
+                    switch (condition) {
+                        case "Sunny":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/01-s.png"
+                        break;
+                        case "Mostly sunny":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/02-s.png"
+                        break;
+                        case "Partly sunny":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/03-s.png"
+                        break;
+                        case "Intermittent clouds":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/04-s.png"
+                        break;
+                        case "Hazy sunshine":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/05-s.png"
+                        break;
+                        case "Mostly cloudy":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/06-s.png"
+                        break;
+                        case "Cloudy":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/07-s.png"
+                        break;
+                        case "Fog":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/11-s.png"
+                        break;
+                        case "Showers":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/12-s.png"
+                        break;
+                        case "Mostly cloudy w/ showers":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/13-s.png"
+                        break;
+                        case "Partly sunny w/ showers":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/14-s.png"
+                        break;
+                        case "T-storms":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/15-s.png"
+                        break;
+                        case "Mostly cloudy w/ t-storms":
+                        conditionImage = "assets/images/thunder.jpg"
+                        break;
+                        case "Partly sunny w/ t-storms":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/16-s.png"
+                        break;
+                        case "Rain":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/18-s.png"
+                        break;
+                        case "Flurries":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/19-s.png"
+                        break;
+                        case "Mostly cloudy w/ flurries":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/21-s.png"
+                        break;
+                        case "Partly sunny w/ flurries":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/21-s.png"
+                        break;
+                        case "Ice":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/24-s.png"
+                        break;
+                        case "Sleet":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/25-s.png"
+                        break;
+                        case "Freezing rain":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/26-s.png"
+                        break;
+                        case "Rain and snow":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/29-s.png"
+                        break;
+                        case "Hot":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/30-s.png"
+                        break;
+                        case "Cold":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/31-s.png"
+                        break;
+                        case "Windy":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/32-s.png"
+                        break;
+                        case "Clear":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/33-s.png"
+                        break;
+                        case "Mostly clear":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/34-s.png"
+                        break;
+                        case "Partly cloudy":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/35-s.png"
+                        break;
+                        case "Mostly cloudy w/ snow":
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/44-s.png"
+                        break;
+                        default:
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/38-s.png"
+                    };
+                    
+                    var weatherInfo = $("<div class='card card-default'><div class='card-header'>" + moment(date).format("ddd, MMM D") + "</div><div class='card-body'><img src=" + conditionImage + "><br>" + highTemp + "° F/" + lowTemp + "° F<br>" + condition + "</div></div>");
+                    
+                    $("#forecast-row").append(weatherInfo);
+                    
+                };
+            });
+            
+        });
+    });
+        
+        
 
 $(document).ready(function () {
-   $("#postForm").hide();
+    $("#postForm").hide();
 });
 
 $("#nameSubmit").on("click", function (event) {
-
     event.preventDefault();
     userName = $("#screenName").val().trim();
     if (userName === "") {
@@ -258,12 +251,10 @@ $("#nameSubmit").on("click", function (event) {
         $("#namePick").hide();
         $("#postForm").show();
     };
-
 });
 
 
 $("#postSubmit").on("click", function (event) {
-
     event.preventDefault();
     var message = $("#post").val().trim();
     if (message === "") {
@@ -275,13 +266,12 @@ $("#postSubmit").on("click", function (event) {
         });
         $("#post").val('');
     }
-
 });
 
 messageBoard.on("child_added", function (snapshot) {
-   var name = snapshot.val().name
-   var message = snapshot.val().message
-   $("#messages").prepend(name + ": " + message + "<br>")
+    var name = snapshot.val().name
+    var message = snapshot.val().message
+    $("#messages").prepend(name + ": " + message + "<br>")
 }, function (errorObject) {
-   console.log("The read failed: " + errorObject.code);
+    console.log("The read failed: " + errorObject.code);
 });

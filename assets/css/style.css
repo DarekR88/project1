@@ -1,21 +1,130 @@
-body {
+#input-zip{
+    margin: auto;
+  
+  }
+  
+  body, html{
+    /* background-image: url(/Users/SahraanMohammed/Desktop/Practice/hanny-naibaho-388579-unsplash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    font-family:'Bowlby One SC', 'cursive';
+    font-weight: 500;
+    line-height: 1.5em;
+    color: grey;
+  }
+  
+  .one {
+  height: 100vh;
+  background-color: silver;
+  }
+  
+  .two {
+  /* height: 50vh;  */
+  background-color: transparent;
+  }
+  
+  .three {
+  /* height: 100vh; */
+  padding: 10px;
+  background-color: silver; 
+  text-align: center;
+  overflow: auto;
+  
+  }
+  
+  .image-1{
+    background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    min-height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-2{
+    background-image:url('https://images.unsplash.com/photo-1495629132492-2c627ecd1315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+    min-height: 370px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-3{
+    background-image:url('https://images.unsplash.com/photo-1536744766901-ebb7459b3d1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+    min-height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-1, .image-2, .image-3{
+    position: relative;
+    background-attachment: fixed;
+  }
+  
+  #location{
+    color: black;
     text-align: center;
-}
-
-#resultsWeather {
-    width: 200px;
-    height: 700px;
-    border-width: 3px;
-    border-style: solid;
-    overflow: Auto;
-    text-align: left;
-}
-
-#messages{
-    width: 375px;
-    height: 700px;
-    border-width: 3px;
-    border-style: solid;
-    text-align: left;
-    overflow-y: auto;
-}
+  }
+  
+  .title{
+  font-family: 'Bowlby One SC', 'cursive';
+  color: silver;
+  }
+  
+  #emptyDiv{
+    color: black;
+  }
+  
+  .card-default {
+    width: 20%;
+    text-align: center;
+    padding-bottom: 2px;
+  }
+  
+  h5{
+    color: darkblue;
+  }
+  
+  #messages{
+    border: solid;
+    border-radius: 1rem;
+    color: darkblue;
+    background: white;
+    color: black;
+    height: 100px;
+    overflow: scroll;
+    border: 1px solid #ccc;
+  }
+  
+  .weatherDiv {
+    background-color: black;
+  }
+  
+  .card-default {
+    background-color: black;
+  }
+  
+  .zipWeather {
+    color: blue;
+  }
+  
+  .citystate{
+    padding: 10px;
+    color: silver;
+    font-size: 18pt;
+  }
+  
+  .citystate2{
+    color: silver;
+    font-size: 18pt;
+  }
+  
+  .border {
+    font-size: 18pt;
+    color: white;
+    margin-top: 2px;
+  }
+  
+  #namePick, #postForm {
+    color: black;
+  }
