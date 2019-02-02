@@ -32,8 +32,6 @@ var futureDate = moment().add(5, 'd').format("YYYYMMDD00")
 $(".zipSubmit").on("click", function (event) {
     event.preventDefault();
 
-    $(".container").addClass("zoomOutUp");
-
     $('html, body').animate({
         scrollTop: $(".one").offset().top
     }, 2000);
@@ -108,6 +106,7 @@ $(".zipSubmit").on("click", function (event) {
 
         $("#location").empty();
         $("#forecast").empty();
+        $(".scrollDown").empty();
 
         zipCode = $("#zipCode").val().trim();
         queryUrl = "https://dataservice.accuweather.com/locations/v1/search?q=" + zipCode + "&apikey=SrginRltEdOGpYssHXGe2dd3lecyyXgh"
