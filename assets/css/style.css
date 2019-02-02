@@ -36,21 +36,21 @@
   }
   
   .image-1{
-    background-image:url('/Users/SahraanMohammed/Desktop/project1/hanny-naibaho-388579-unsplash.png');
+    background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     min-height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
   }
   
   .image-2{
-    background-image:url('/Users/SahraanMohammed/Desktop/project1/francesco-ungaro-1180051-unsplash.png');
+    background-image:url('https://images.unsplash.com/photo-1495629132492-2c627ecd1315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
     min-height: 370px;
     background-size: cover;
     background-repeat: no-repeat;
   }
   
   .image-3{
-    background-image:url('/Users/SahraanMohammed/Desktop/project1/rawpixel-778690-unsplash.png');
+    background-image:url('https://images.unsplash.com/photo-1536744766901-ebb7459b3d1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
     min-height: 350px;
     background-size: cover;
     background-repeat: no-repeat;

@@ -70,7 +70,7 @@ $(".zipSubmit").on("click", function (event) {
 
         for (i = 0; i < event.length; i++) {
             var newDiv = $("<div>");
-            newDiv.text("Starts At: " + moment(event[i].start_time).format("LLLL"));
+            newDiv.text("Starts On: " + moment(event[i].start_time).format("LLLL"));
             newDiv.append("<br>Venue Name: " + event[i].venue_name + " ");
             if (event[i].performers === null) {
                 $("<a>", { href: event[i].url, text: " Buy Tickets Here" }).appendTo(newDiv);
@@ -136,94 +136,94 @@ $(".zipSubmit").on("click", function (event) {
                     lowTemp = zipResponse.DailyForecasts[i].Temperature.Minimum.Value
                     switch (condition) {
                         case "Sunny":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/sunny.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/01-s.png"
                         break;
                         case "Mostly sunny":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlysunny.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/02-s.png"
                         break;
                         case "Partly sunny":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/partlysunny.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/03-s.png"
                         break;
                         case "Intermittent clouds":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/intermittentclouds.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/04-s.png"
                         break;
                         case "Hazy sunshine":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/hazysunshine.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/05-s.png"
                         break;
                         case "Mostly cloudy":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlycloudy.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/06-s.png"
                         break;
                         case "Cloudy":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/cloudy.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/07-s.png"
                         break;
                         case "Fog":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/fog.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/11-s.png"
                         break;
                         case "Showers":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/showers.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/12-s.png"
                         break;
                         case "Mostly cloudy w/ showers":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlycloudyshowers.pngassets/images/rain.jpg"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/13-s.png"
                         break;
                         case "Partly sunny w/ showers":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/partlysunnyshowers.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/14-s.png"
                         break;
                         case "T-storms":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/tstorms.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/15-s.png"
                         break;
                         case "Mostly cloudy w/ t-storms":
                         conditionImage = "assets/images/thunder.jpg"
                         break;
                         case "Partly sunny w/ t-storms":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/partlysunnyTstorms.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/16-s.png"
                         break;
                         case "Rain":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/rain.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/18-s.png"
                         break;
                         case "Flurries":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/flurries.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/19-s.png"
                         break;
                         case "Mostly cloudy w/ flurries":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlycloudlyflurries.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/21-s.png"
                         break;
                         case "Partly sunny w/ flurries":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/partlysunnyflurries.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/21-s.png"
                         break;
                         case "Ice":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/ice.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/24-s.png"
                         break;
                         case "Sleet":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/sleet.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/25-s.png"
                         break;
                         case "Freezing rain":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/freezingrain.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/26-s.png"
                         break;
                         case "Rain and snow":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/rainandsnow.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/29-s.png"
                         break;
                         case "Hot":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/hot.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/30-s.png"
                         break;
                         case "Cold":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/cold.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/31-s.png"
                         break;
                         case "Windy":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/windy.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/32-s.png"
                         break;
                         case "Clear":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/clear.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/33-s.png"
                         break;
                         case "Mostly clear":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlyclear.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/34-s.png"
                         break;
                         case "Partly cloudy":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/partlycloudy.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/35-s.png"
                         break;
                         case "Mostly cloudy w/ snow":
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlycloudysnow.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/44-s.png"
                         break;
                         default:
-                        conditionImage = "/Users/SahraanMohammed/Desktop/hasanainm.github.io/project1/assets/images/mostlycloudy.png"
+                        conditionImage = "https://developer.accuweather.com/sites/default/files/38-s.png"
                     };
                     
                     var weatherInfo = $("<div class='card card-default'><div class='card-header'>" + moment(date).format("ddd, MMM D") + "</div><div class='card-body'><img src=" + conditionImage + "><br>" + highTemp + "° F/" + lowTemp + "° F<br>" + condition + "</div></div>");
